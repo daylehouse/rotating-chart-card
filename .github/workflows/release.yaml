@@ -12,7 +12,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            rotating-chart-card.js
+            dist/rotating-chart-card.js
             hacs.json
-            manifest.json
             README.md
