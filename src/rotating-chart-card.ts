@@ -23,7 +23,8 @@ export class RotatingChartCard extends LitElement {
     return {
       schema: [
         { name: "fleet_power_entity", selector: { entity: {} } },
-        { name: "efficiency_chart_entity", selector: { entity: {} } }
+        { name: "efficiency_chart_entity", selector: { entity: {} } },
+        { name: "rotation_duration", selector: { number: { min: 1, max: 60, unit: "s", mode: "box" } } }
       ],
       computeLabel: (schema: any) => {
         switch (schema.name) {
@@ -31,6 +32,8 @@ export class RotatingChartCard extends LitElement {
             return "Fleet Power Entity";
           case "efficiency_chart_entity":
             return "Efficiency Chart Entity";
+          case "rotation_duration":
+            return "Rotation Duration (seconds)";
           default:
             return undefined;
         }
@@ -41,6 +44,8 @@ export class RotatingChartCard extends LitElement {
             return "Entity used for the power chart.";
           case "efficiency_chart_entity":
             return "Entity used for the efficiency chart.";
+          case "rotation_duration":
+            return "How long each chart is shown before rotating.";
           default:
             return undefined;
         }
@@ -51,7 +56,8 @@ export class RotatingChartCard extends LitElement {
   static getStubConfig() {
     return {
       fleet_power_entity: "sensor.fleet_power",
-      efficiency_chart_entity: "sensor.fleet_energy_efficiency"
+      efficiency_chart_entity: "sensor.fleet_energy_efficiency",
+      rotation_duration: 5
     };
   }
 
@@ -81,10 +87,11 @@ export class RotatingChartCard extends LitElement {
 
   private startChartMarquee() {
     if (this.chartMarqueeInterval !== null) return;
+    const duration = Number(this._config?.rotation_duration) || 5;
     this.chartMarqueeInterval = window.setInterval(() => {
       this.chartMarqueeIndex = (this.chartMarqueeIndex + 1) % 2;
       this.requestUpdate();
-    }, 5000);
+    }, duration * 1000);
   }
 
   private async fetchAndPopulatePowerHistory() {
