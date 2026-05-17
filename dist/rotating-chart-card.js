@@ -534,7 +534,11 @@ RotatingChartCard.styles = css `
     ha-card {
       width: 100%;
       box-sizing: border-box;
-      padding: 0;
+      padding: 16px;
+      margin: 0;
+      border-radius: 12px;
+      box-shadow: var(--ha-card-box-shadow, 0 2px 4px rgba(0,0,0,0.08));
+      background: var(--ha-card-background, var(--card-background-color, #222));
     }
     .marquee-container {
       position: relative;
