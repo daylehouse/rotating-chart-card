@@ -2,6 +2,7 @@
   "name": "rotating-chart-card",
   "version": "0.1.0",
   "description": "A Home Assistant Lovelace custom card for rotating Power and Efficiency charts with HUD.",
+  "type": "module",
   "main": "src/rotating-chart-card.ts",
   "scripts": {
     "build": "tsc && rollup -c",
