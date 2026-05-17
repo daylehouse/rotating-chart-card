@@ -1,9 +1,0 @@
-{
-  "domain": "rotating_chart_card",
-  "name": "Rotating Chart Card",
-  "version": "0.1.0",
-  "documentation": "https://github.com/daylehouse/rotating-chart-card",
-  "dependencies": [],
-  "codeowners": ["@daylehouse"],
-  "requirements": []
-}
