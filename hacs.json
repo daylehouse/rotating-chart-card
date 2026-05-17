@@ -1,9 +1,6 @@
 {
   "name": "Rotating Chart Card",
   "content_in_root": false,
-  "filename": "dist/rotating-chart-card.js",
-  "domains": ["dashboard"],
-  "render_readme": true,
-  "zip_release": true,
-  "config_flow": false
+  "filename": "rotating-chart-card.js",
+  "render_readme": true
 }
