@@ -1,0 +1,9 @@
+{
+  "name": "Rotating Chart Card",
+  "content_in_root": false,
+  "filename": "rotating-chart-card.js",
+  "domains": ["lovelace"],
+  "render_readme": true,
+  "zip_release": true,
+  "config_flow": false
+}
