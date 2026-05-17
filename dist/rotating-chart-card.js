@@ -306,10 +306,10 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
         return html `
       <ha-card>
         <div class="marquee-container">
-          <div class="chart-stack" style="opacity: ${this.chartMarqueeIndex === 0 ? 1 : 0}; pointer-events: ${this.chartMarqueeIndex === 0 ? 'auto' : 'none'};">
+          <div class="chart-stack ${this.chartMarqueeIndex === 0 ? 'active' : 'inactive'} ${this.chartMarqueeIndex === 0 ? 'slide-down' : ''}">
             <canvas id="efficiency-chart" aria-label="Efficiency history chart"></canvas>
           </div>
-          <div class="chart-stack" style="opacity: ${this.chartMarqueeIndex === 1 ? 1 : 0}; pointer-events: ${this.chartMarqueeIndex === 1 ? 'auto' : 'none'};">
+          <div class="chart-stack ${this.chartMarqueeIndex === 1 ? 'active' : 'inactive'} ${this.chartMarqueeIndex === 1 ? 'slide-down' : ''}">
             <canvas id="power-chart" aria-label="Power history chart"></canvas>
           </div>
         </div>
@@ -331,12 +331,36 @@ RotatingChartCard.styles = css `
       width: 100%;
       height: 200px;
       margin-bottom: 16px;
+      overflow: hidden;
     }
     .chart-stack {
       position: absolute;
       width: 100%;
       height: 100%;
-      transition: opacity 0.7s;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.5s;
+      transform: translateY(-40px);
+    }
+    .chart-stack.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+    .chart-stack.slide-down {
+      animation: slideDown 0.5s cubic-bezier(0.4, 0.8, 0.2, 1);
+      transform: translateY(0);
+    }
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .hud-group {
       display: flex;
