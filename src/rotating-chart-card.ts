@@ -36,7 +36,15 @@ export class RotatingChartCard extends LitElement {
               ]
             }
           }
-        }
+        },
+        { name: "background_color", selector: { color: {} } },
+        { name: "xaxis_label_color", selector: { color: {} } },
+        { name: "yaxis_label_color", selector: { color: {} } },
+        { name: "xaxis_tick_amount", selector: { number: { min: 2, max: 24, step: 1, mode: "box" } } },
+        { name: "yaxis_tick_amount", selector: { number: { min: 2, max: 24, step: 1, mode: "box" } } },
+        { name: "chart_color", selector: { color: {} } },
+        { name: "show_title", selector: { boolean: {} } },
+        { name: "show_legend", selector: { boolean: {} } }
       ],
       computeLabel: (schema: any) => {
         switch (schema.name) {
@@ -46,6 +54,22 @@ export class RotatingChartCard extends LitElement {
             return "Efficiency Chart Entity";
           case "rotation_duration":
             return "Rotation Duration";
+          case "background_color":
+            return "Background Color";
+          case "xaxis_label_color":
+            return "X-Axis Label Color";
+          case "yaxis_label_color":
+            return "Y-Axis Label Color";
+          case "xaxis_tick_amount":
+            return "Tick Amount X-Axis";
+          case "yaxis_tick_amount":
+            return "Tick Amount Y-Axis";
+          case "chart_color":
+            return "Chart Colour";
+          case "show_title":
+            return "Show Title";
+          case "show_legend":
+            return "Show Legend";
           default:
             return undefined;
         }
@@ -58,6 +82,22 @@ export class RotatingChartCard extends LitElement {
             return "Entity used for the efficiency chart.";
           case "rotation_duration":
             return "How long each chart is shown before rotating.";
+          case "background_color":
+            return "Background color for the chart area.";
+          case "xaxis_label_color":
+            return "Color for X-axis labels.";
+          case "yaxis_label_color":
+            return "Color for Y-axis labels.";
+          case "xaxis_tick_amount":
+            return "Number of ticks on the X-axis.";
+          case "yaxis_tick_amount":
+            return "Number of ticks on the Y-axis.";
+          case "chart_color":
+            return "Line color for the chart.";
+          case "show_title":
+            return "Show chart title above the chart.";
+          case "show_legend":
+            return "Show chart legend.";
           default:
             return undefined;
         }
