@@ -23,6 +23,88 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
      * Matches bitcoin-miner-card pattern
      */
     static getConfigForm() {
+        // Power chart grid options
+        {
+            name: "power_x_grid", selector;
+            {
+                boolean: { }
+            }
+        }
+        {
+            name: "power_x_grid_color", selector;
+            {
+                color: { }
+            }
+        }
+        {
+            name: "power_y_grid", selector;
+            {
+                boolean: { }
+            }
+        }
+        {
+            name: "power_y_grid_color", selector;
+            {
+                color: { }
+            }
+        }
+        // Efficiency chart grid options
+        {
+            name: "efficiency_x_grid", selector;
+            {
+                boolean: { }
+            }
+        }
+        {
+            name: "efficiency_x_grid_color", selector;
+            {
+                color: { }
+            }
+        }
+        {
+            name: "efficiency_y_grid", selector;
+            {
+                boolean: { }
+            }
+        }
+        {
+            name: "efficiency_y_grid_color", selector;
+            {
+                color: { }
+            }
+        }
+        "power_x_grid";
+        return "Power Chart X Grid";
+        "power_x_grid_color";
+        return "Power Chart X Grid Color";
+        "power_y_grid";
+        return "Power Chart Y Grid";
+        "power_y_grid_color";
+        return "Power Chart Y Grid Color";
+        "efficiency_x_grid";
+        return "Efficiency Chart X Grid";
+        "efficiency_x_grid_color";
+        return "Efficiency Chart X Grid Color";
+        "efficiency_y_grid";
+        return "Efficiency Chart Y Grid";
+        "efficiency_y_grid_color";
+        return "Efficiency Chart Y Grid Color";
+        "power_x_grid";
+        return "Show/hide X grid for power chart.";
+        "power_x_grid_color";
+        return "Color (with transparency) for power chart X grid.";
+        "power_y_grid";
+        return "Show/hide Y grid for power chart.";
+        "power_y_grid_color";
+        return "Color (with transparency) for power chart Y grid.";
+        "efficiency_x_grid";
+        return "Show/hide X grid for efficiency chart.";
+        "efficiency_x_grid_color";
+        return "Color (with transparency) for efficiency chart X grid.";
+        "efficiency_y_grid";
+        return "Show/hide Y grid for efficiency chart.";
+        "efficiency_y_grid_color";
+        return "Color (with transparency) for efficiency chart Y grid.";
         return {
             schema: [
                 { name: "fleet_power_entity", selector: { entity: {} } },
@@ -252,6 +334,10 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
         const yTicks = Number(cfg.yaxis_tick_amount) || 3;
         const showTitle = cfg.show_title !== undefined ? cfg.show_title : true;
         const showLegend = cfg.show_legend !== undefined ? cfg.show_legend : false;
+        const showXGrid = cfg.power_x_grid !== undefined ? cfg.power_x_grid : true;
+        const showYGrid = cfg.power_y_grid !== undefined ? cfg.power_y_grid : true;
+        const xGridColor = cfg.power_x_grid_color || "rgba(159,251,255,0.12)";
+        const yGridColor = cfg.power_y_grid_color || "rgba(21,255,0,0.12)";
         const chartConfig = {
             type: "line",
             data: {
@@ -283,12 +369,12 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                 scales: {
                     x: {
                         ticks: { color: xLabelColor, font: { size: 10 }, maxTicksLimit: xTicks },
-                        grid: { color: "rgba(159,251,255,0.12)" }
+                        grid: { display: showXGrid, color: xGridColor }
                     },
                     y: {
                         title: { display: true, text: "W", color: yLabelColor, font: { size: 10 } },
                         ticks: { color: yLabelColor, font: { size: 10 }, maxTicksLimit: yTicks },
-                        grid: { color: "rgba(21,255,0,0.12)" }
+                        grid: { display: showYGrid, color: yGridColor }
                     }
                 }
             }
@@ -318,6 +404,10 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
         const yTicks = Number(cfg.yaxis_tick_amount) || 3;
         const showTitle = cfg.show_title !== undefined ? cfg.show_title : true;
         const showLegend = cfg.show_legend !== undefined ? cfg.show_legend : false;
+        const showXGrid = cfg.efficiency_x_grid !== undefined ? cfg.efficiency_x_grid : true;
+        const showYGrid = cfg.efficiency_y_grid !== undefined ? cfg.efficiency_y_grid : true;
+        const xGridColor = cfg.efficiency_x_grid_color || "rgba(159,251,255,0.12)";
+        const yGridColor = cfg.efficiency_y_grid_color || "rgba(21,255,0,0.12)";
         const chartConfig = {
             type: "line",
             data: {
@@ -349,12 +439,12 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                 scales: {
                     x: {
                         ticks: { color: xLabelColor, font: { size: 10 }, maxTicksLimit: xTicks },
-                        grid: { color: "rgba(159,251,255,0.12)" }
+                        grid: { display: showXGrid, color: xGridColor }
                     },
                     y: {
                         title: { display: true, text: "J/TH", color: yLabelColor, font: { size: 10 } },
                         ticks: { color: yLabelColor, font: { size: 10 }, maxTicksLimit: yTicks },
-                        grid: { color: "rgba(21,255,0,0.12)" }
+                        grid: { display: showYGrid, color: yGridColor }
                     }
                 }
             }
