@@ -237,6 +237,16 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
         const context = canvas.getContext("2d");
         if (!context)
             return;
+        // Read config options with fallbacks
+        const cfg = this._config || {};
+        const chartColor = cfg.chart_color || "#ff2bd6";
+        const bgColor = cfg.background_color || "rgba(255,43,214,0.12)";
+        const xLabelColor = cfg.xaxis_label_color || chartColor;
+        const yLabelColor = cfg.yaxis_label_color || "#ffffff";
+        const xTicks = Number(cfg.xaxis_tick_amount) || 6;
+        const yTicks = Number(cfg.yaxis_tick_amount) || 3;
+        const showTitle = cfg.show_title !== undefined ? cfg.show_title : true;
+        const showLegend = cfg.show_legend !== undefined ? cfg.show_legend : false;
         const chartConfig = {
             type: "line",
             data: {
@@ -244,8 +254,8 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                 datasets: [{
                         label: "Power",
                         data: this.powerChartData.power,
-                        borderColor: "#ff2bd6",
-                        backgroundColor: "rgba(255,43,214,0.12)",
+                        borderColor: chartColor,
+                        backgroundColor: bgColor,
                         tension: 0.28,
                         pointRadius: 0,
                         borderWidth: 2,
@@ -257,22 +267,22 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                 maintainAspectRatio: false,
                 plugins: {
                     title: {
-                        display: true,
+                        display: showTitle,
                         text: "Power",
-                        color: "#ffffff",
+                        color: yLabelColor,
                         font: { size: 12 },
                         padding: { top: 2, bottom: 2 }
                     },
-                    legend: { display: false }
+                    legend: { display: showLegend }
                 },
                 scales: {
                     x: {
-                        ticks: { color: "#ff2bd6", font: { size: 10 } },
+                        ticks: { color: xLabelColor, font: { size: 10 }, maxTicksLimit: xTicks },
                         grid: { color: "rgba(159,251,255,0.12)" }
                     },
                     y: {
-                        title: { display: true, text: "W", color: "#ffffff", font: { size: 10 } },
-                        ticks: { color: "#ff2bd6", font: { size: 10 }, maxTicksLimit: 3 },
+                        title: { display: true, text: "W", color: yLabelColor, font: { size: 10 } },
+                        ticks: { color: yLabelColor, font: { size: 10 }, maxTicksLimit: yTicks },
                         grid: { color: "rgba(21,255,0,0.12)" }
                     }
                 }
@@ -293,6 +303,16 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
         const context = canvas.getContext("2d");
         if (!context)
             return;
+        // Read config options with fallbacks
+        const cfg = this._config || {};
+        const chartColor = cfg.chart_color || "#00f5ff";
+        const bgColor = cfg.background_color || "rgba(0,245,255,0.12)";
+        const xLabelColor = cfg.xaxis_label_color || chartColor;
+        const yLabelColor = cfg.yaxis_label_color || "#ffffff";
+        const xTicks = Number(cfg.xaxis_tick_amount) || 6;
+        const yTicks = Number(cfg.yaxis_tick_amount) || 3;
+        const showTitle = cfg.show_title !== undefined ? cfg.show_title : true;
+        const showLegend = cfg.show_legend !== undefined ? cfg.show_legend : false;
         const chartConfig = {
             type: "line",
             data: {
@@ -300,8 +320,8 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                 datasets: [{
                         label: "Efficiency",
                         data: this.efficiencyChartData.efficiency,
-                        borderColor: "#00f5ff",
-                        backgroundColor: "rgba(0,245,255,0.12)",
+                        borderColor: chartColor,
+                        backgroundColor: bgColor,
                         tension: 0.28,
                         pointRadius: 0,
                         borderWidth: 2,
@@ -313,22 +333,22 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                 maintainAspectRatio: false,
                 plugins: {
                     title: {
-                        display: true,
+                        display: showTitle,
                         text: "Efficiency",
-                        color: "#ffffff",
+                        color: yLabelColor,
                         font: { size: 12 },
                         padding: { top: 2, bottom: 2 }
                     },
-                    legend: { display: false }
+                    legend: { display: showLegend }
                 },
                 scales: {
                     x: {
-                        ticks: { color: "#00f5ff", font: { size: 10 } },
+                        ticks: { color: xLabelColor, font: { size: 10 }, maxTicksLimit: xTicks },
                         grid: { color: "rgba(159,251,255,0.12)" }
                     },
                     y: {
-                        title: { display: true, text: "J/TH", color: "#ffffff", font: { size: 10 } },
-                        ticks: { color: "#00f5ff", font: { size: 10 }, maxTicksLimit: 3 },
+                        title: { display: true, text: "J/TH", color: yLabelColor, font: { size: 10 } },
+                        ticks: { color: yLabelColor, font: { size: 10 }, maxTicksLimit: yTicks },
                         grid: { color: "rgba(21,255,0,0.12)" }
                     }
                 }
