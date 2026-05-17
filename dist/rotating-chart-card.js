@@ -23,88 +23,136 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
      * Matches bitcoin-miner-card pattern
      */
     static getConfigForm() {
-        // Power chart grid options
-        {
-            name: "power_x_grid", selector;
-            {
-                boolean: { }
+        return {
+            schema: [
+                { name: "fleet_power_entity", selector: { entity: {} } },
+                { name: "efficiency_chart_entity", selector: { entity: {} } },
+                {
+                    name: "rotation_duration",
+                    selector: {
+                        select: {
+                            options: [
+                                { value: 5, label: "5 seconds" },
+                                { value: 10, label: "10 seconds" },
+                                { value: 15, label: "15 seconds" },
+                                { value: 30, label: "30 seconds" }
+                            ]
+                        }
+                    }
+                },
+                { name: "background_color", selector: { color: {} } },
+                { name: "xaxis_label_color", selector: { color: {} } },
+                { name: "yaxis_label_color", selector: { color: {} } },
+                { name: "xaxis_tick_amount", selector: { number: { min: 2, max: 24, step: 1, mode: "box" } } },
+                { name: "yaxis_tick_amount", selector: { number: { min: 2, max: 24, step: 1, mode: "box" } } },
+                { name: "power_chart_color", selector: { color: {} } },
+                { name: "efficiency_chart_color", selector: { color: {} } },
+                { name: "show_title", selector: { boolean: {} } },
+                { name: "show_legend", selector: { boolean: {} } },
+                // Power chart grid options
+                { name: "power_x_grid", selector: { boolean: {} } },
+                { name: "power_x_grid_color", selector: { color: {} } },
+                { name: "power_y_grid", selector: { boolean: {} } },
+                { name: "power_y_grid_color", selector: { color: {} } },
+                // Efficiency chart grid options
+                { name: "efficiency_x_grid", selector: { boolean: {} } },
+                { name: "efficiency_x_grid_color", selector: { color: {} } },
+                { name: "efficiency_y_grid", selector: { boolean: {} } },
+                { name: "efficiency_y_grid_color", selector: { color: {} } }
+            ],
+            computeLabel: (schema) => {
+                switch (schema.name) {
+                    case "fleet_power_entity":
+                        return "Fleet Power Entity";
+                    case "efficiency_chart_entity":
+                        return "Efficiency Chart Entity";
+                    case "rotation_duration":
+                        return "Rotation Duration";
+                    case "background_color":
+                        return "Background Color";
+                    case "xaxis_label_color":
+                        return "X-Axis Label Color";
+                    case "yaxis_label_color":
+                        return "Y-Axis Label Color";
+                    case "xaxis_tick_amount":
+                        return "Tick Amount X-Axis";
+                    case "yaxis_tick_amount":
+                        return "Tick Amount Y-Axis";
+                    case "power_chart_color":
+                        return "Power Chart Colour";
+                    case "efficiency_chart_color":
+                        return "Efficiency Chart Colour";
+                    case "show_title":
+                        return "Show Title";
+                    case "show_legend":
+                        return "Show Legend";
+                    case "power_x_grid":
+                        return "Power Chart X Grid";
+                    case "power_x_grid_color":
+                        return "Power Chart X Grid Color";
+                    case "power_y_grid":
+                        return "Power Chart Y Grid";
+                    case "power_y_grid_color":
+                        return "Power Chart Y Grid Color";
+                    case "efficiency_x_grid":
+                        return "Efficiency Chart X Grid";
+                    case "efficiency_x_grid_color":
+                        return "Efficiency Chart X Grid Color";
+                    case "efficiency_y_grid":
+                        return "Efficiency Chart Y Grid";
+                    case "efficiency_y_grid_color":
+                        return "Efficiency Chart Y Grid Color";
+                    default:
+                        return undefined;
+                }
+            },
+            computeHelper: (schema) => {
+                switch (schema.name) {
+                    case "fleet_power_entity":
+                        return "Entity used for the power chart.";
+                    case "efficiency_chart_entity":
+                        return "Entity used for the efficiency chart.";
+                    case "rotation_duration":
+                        return "How long each chart is shown before rotating.";
+                    case "background_color":
+                        return "Background color for the chart area.";
+                    case "xaxis_label_color":
+                        return "Color for X-axis labels.";
+                    case "yaxis_label_color":
+                        return "Color for Y-axis labels.";
+                    case "xaxis_tick_amount":
+                        return "Number of ticks on the X-axis.";
+                    case "yaxis_tick_amount":
+                        return "Number of ticks on the Y-axis.";
+                    case "power_chart_color":
+                        return "Line color for the power chart.";
+                    case "efficiency_chart_color":
+                        return "Line color for the efficiency chart.";
+                    case "show_title":
+                        return "Show chart title above the chart.";
+                    case "show_legend":
+                        return "Show chart legend.";
+                    case "power_x_grid":
+                        return "Show/hide X grid for power chart.";
+                    case "power_x_grid_color":
+                        return "Color (with transparency) for power chart X grid.";
+                    case "power_y_grid":
+                        return "Show/hide Y grid for power chart.";
+                    case "power_y_grid_color":
+                        return "Color (with transparency) for power chart Y grid.";
+                    case "efficiency_x_grid":
+                        return "Show/hide X grid for efficiency chart.";
+                    case "efficiency_x_grid_color":
+                        return "Color (with transparency) for efficiency chart X grid.";
+                    case "efficiency_y_grid":
+                        return "Show/hide Y grid for efficiency chart.";
+                    case "efficiency_y_grid_color":
+                        return "Color (with transparency) for efficiency chart Y grid.";
+                    default:
+                        return undefined;
+                }
             }
-        }
-        {
-            name: "power_x_grid_color", selector;
-            {
-                color: { }
-            }
-        }
-        {
-            name: "power_y_grid", selector;
-            {
-                boolean: { }
-            }
-        }
-        {
-            name: "power_y_grid_color", selector;
-            {
-                color: { }
-            }
-        }
-        // Efficiency chart grid options
-        {
-            name: "efficiency_x_grid", selector;
-            {
-                boolean: { }
-            }
-        }
-        {
-            name: "efficiency_x_grid_color", selector;
-            {
-                color: { }
-            }
-        }
-        {
-            name: "efficiency_y_grid", selector;
-            {
-                boolean: { }
-            }
-        }
-        {
-            name: "efficiency_y_grid_color", selector;
-            {
-                color: { }
-            }
-        }
-        "power_x_grid";
-        return "Power Chart X Grid";
-        "power_x_grid_color";
-        return "Power Chart X Grid Color";
-        "power_y_grid";
-        return "Power Chart Y Grid";
-        "power_y_grid_color";
-        return "Power Chart Y Grid Color";
-        "efficiency_x_grid";
-        return "Efficiency Chart X Grid";
-        "efficiency_x_grid_color";
-        return "Efficiency Chart X Grid Color";
-        "efficiency_y_grid";
-        return "Efficiency Chart Y Grid";
-        "efficiency_y_grid_color";
-        return "Efficiency Chart Y Grid Color";
-        "power_x_grid";
-        return "Show/hide X grid for power chart.";
-        "power_x_grid_color";
-        return "Color (with transparency) for power chart X grid.";
-        "power_y_grid";
-        return "Show/hide Y grid for power chart.";
-        "power_y_grid_color";
-        return "Color (with transparency) for power chart Y grid.";
-        "efficiency_x_grid";
-        return "Show/hide X grid for efficiency chart.";
-        "efficiency_x_grid_color";
-        return "Color (with transparency) for efficiency chart X grid.";
-        "efficiency_y_grid";
-        return "Show/hide Y grid for efficiency chart.";
-        "efficiency_y_grid_color";
-        return "Color (with transparency) for efficiency chart Y grid.";
+        };
         return {
             schema: [
                 { name: "fleet_power_entity", selector: { entity: {} } },
