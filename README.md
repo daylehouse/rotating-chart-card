@@ -14,8 +14,8 @@ A Home Assistant Lovelace custom card for displaying Power and Efficiency charts
 2. Install the card via HACS.
 3. Add the card to your Lovelace dashboard.
 
-### Manual
-1. Download the latest `rotating-chart-card.js` from the [releases](https://github.com/daylehouse/rotating-chart-card/releases/latest) or [raw file](https://github.com/daylehouse/rotating-chart-card/raw/main/rotating-chart-card.js).
++### Manual
+1. Download the latest `dist/rotating-chart-card.js` from the [releases](https://github.com/daylehouse/rotating-chart-card/releases/latest) or [raw file](https://github.com/daylehouse/rotating-chart-card/raw/main/dist/rotating-chart-card.js).
 2. Place it in your `/config/www/` folder.
 3. Add the resource to your dashboard:
 	 ```yaml
