@@ -27,7 +27,19 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
             schema: [
                 { name: "fleet_power_entity", selector: { entity: {} } },
                 { name: "efficiency_chart_entity", selector: { entity: {} } },
-                { name: "rotation_duration", selector: { number: { min: 1, max: 60, unit: "s", mode: "box" } } }
+                {
+                    name: "rotation_duration",
+                    selector: {
+                        select: {
+                            options: [
+                                { value: 5, label: "5 seconds" },
+                                { value: 10, label: "10 seconds" },
+                                { value: 15, label: "15 seconds" },
+                                { value: 30, label: "30 seconds" }
+                            ]
+                        }
+                    }
+                }
             ],
             computeLabel: (schema) => {
                 switch (schema.name) {
@@ -36,7 +48,7 @@ let RotatingChartCard = class RotatingChartCard extends LitElement {
                     case "efficiency_chart_entity":
                         return "Efficiency Chart Entity";
                     case "rotation_duration":
-                        return "Rotation Duration (seconds)";
+                        return "Rotation Duration";
                     default:
                         return undefined;
                 }
