@@ -14,8 +14,38 @@ export class RotatingChartCard extends LitElement {
   private powerChart: Chart | null = null;
   private efficiencyChart: Chart | null = null;
 
-  static getConfigElement() {
-    return document.createElement("rotating-chart-card-editor");
+
+  /**
+   * Advanced Home Assistant config UI schema (for Lovelace UI editor)
+   * Matches bitcoin-miner-card pattern
+   */
+  static getConfigForm() {
+    return {
+      schema: [
+        { name: "fleet_power_entity", selector: { entity: {} } },
+        { name: "efficiency_chart_entity", selector: { entity: {} } }
+      ],
+      computeLabel: (schema: any) => {
+        switch (schema.name) {
+          case "fleet_power_entity":
+            return "Fleet Power Entity";
+          case "efficiency_chart_entity":
+            return "Efficiency Chart Entity";
+          default:
+            return undefined;
+        }
+      },
+      computeHelper: (schema: any) => {
+        switch (schema.name) {
+          case "fleet_power_entity":
+            return "Entity used for the power chart.";
+          case "efficiency_chart_entity":
+            return "Entity used for the efficiency chart.";
+          default:
+            return undefined;
+        }
+      }
+    };
   }
 
   static getStubConfig() {
