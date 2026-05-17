@@ -42,7 +42,8 @@ export class RotatingChartCard extends LitElement {
         { name: "yaxis_label_color", selector: { color: {} } },
         { name: "xaxis_tick_amount", selector: { number: { min: 2, max: 24, step: 1, mode: "box" } } },
         { name: "yaxis_tick_amount", selector: { number: { min: 2, max: 24, step: 1, mode: "box" } } },
-        { name: "chart_color", selector: { color: {} } },
+        { name: "power_chart_color", selector: { color: {} } },
+        { name: "efficiency_chart_color", selector: { color: {} } },
         { name: "show_title", selector: { boolean: {} } },
         { name: "show_legend", selector: { boolean: {} } }
       ],
@@ -64,8 +65,10 @@ export class RotatingChartCard extends LitElement {
             return "Tick Amount X-Axis";
           case "yaxis_tick_amount":
             return "Tick Amount Y-Axis";
-          case "chart_color":
-            return "Chart Colour";
+          case "power_chart_color":
+            return "Power Chart Colour";
+          case "efficiency_chart_color":
+            return "Efficiency Chart Colour";
           case "show_title":
             return "Show Title";
           case "show_legend":
@@ -92,8 +95,10 @@ export class RotatingChartCard extends LitElement {
             return "Number of ticks on the X-axis.";
           case "yaxis_tick_amount":
             return "Number of ticks on the Y-axis.";
-          case "chart_color":
-            return "Line color for the chart.";
+          case "power_chart_color":
+            return "Line color for the power chart.";
+          case "efficiency_chart_color":
+            return "Line color for the efficiency chart.";
           case "show_title":
             return "Show chart title above the chart.";
           case "show_legend":
@@ -240,7 +245,7 @@ export class RotatingChartCard extends LitElement {
     if (!context) return;
     // Read config options with fallbacks
     const cfg = this._config || {};
-    const chartColor = cfg.chart_color || "#ff2bd6";
+    const chartColor = cfg.power_chart_color || "#ff2bd6";
     const bgColor = cfg.background_color || "rgba(255,43,214,0.12)";
     const xLabelColor = cfg.xaxis_label_color || chartColor;
     const yLabelColor = cfg.yaxis_label_color || "#ffffff";
@@ -305,7 +310,7 @@ export class RotatingChartCard extends LitElement {
     if (!context) return;
     // Read config options with fallbacks
     const cfg = this._config || {};
-    const chartColor = cfg.chart_color || "#00f5ff";
+    const chartColor = cfg.efficiency_chart_color || "#00f5ff";
     const bgColor = cfg.background_color || "rgba(0,245,255,0.12)";
     const xLabelColor = cfg.xaxis_label_color || chartColor;
     const yLabelColor = cfg.yaxis_label_color || "#ffffff";
