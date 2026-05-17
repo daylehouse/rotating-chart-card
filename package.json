@@ -5,7 +5,8 @@
   "type": "module",
   "main": "src/rotating-chart-card.ts",
   "scripts": {
-    "build": "tsc && rollup -c",
+    "build": "tsc && rollup -c && npm run postbuild",
+    "postbuild": "cp dist/rotating-chart-card.js rotating-chart-card.js",
     "watch": "tsc --watch"
   },
   "keywords": [
