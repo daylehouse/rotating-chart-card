@@ -385,13 +385,25 @@ RotatingChartCard.styles = css `
     :host {
       display: block;
       font-family: var(--cmf-font-stack, Arial, sans-serif);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    ha-card {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0;
     }
     .marquee-container {
       position: relative;
       width: 100%;
-      height: 200px;
+      aspect-ratio: 2.2 / 1;
+      min-height: 180px;
+      max-height: 320px;
       margin-bottom: 16px;
       overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
     }
     .chart-stack {
       position: absolute;
@@ -402,6 +414,9 @@ RotatingChartCard.styles = css `
       z-index: 1;
       transition: opacity 0.5s;
       transform: translateY(-40px);
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
     }
     .chart-stack.active {
       opacity: 1;
@@ -411,6 +426,14 @@ RotatingChartCard.styles = css `
     .chart-stack.slide-down {
       animation: slideDown 0.5s cubic-bezier(0.4, 0.8, 0.2, 1);
       transform: translateY(0);
+    }
+    .chart-stack canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      aspect-ratio: 2.2 / 1;
+      max-height: 320px;
+      min-height: 180px;
     }
     @keyframes slideDown {
       0% {
