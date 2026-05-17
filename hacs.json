@@ -1,6 +1,9 @@
 {
   "name": "Rotating Chart Card",
-  "content_in_root": false,
-  "filename": "rotating-chart-card.js",
+  "filename": "dist/rotating-chart-card.js",
+  "version": "0.1.0",
+  "resources": [
+    { "file": "dist/rotating-chart-card.js" }
+  ],
   "render_readme": true
 }
